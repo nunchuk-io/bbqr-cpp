@@ -105,7 +105,11 @@ SplitResult split_qrs(std::string_view raw, FileType file_type, const SplitOptio
     buff.append(encoded.data() + offset, std::min(per_each, size - offset));
     parts.emplace_back(std::move(buff));
   }
-  return SplitResult(version, parts, encoding);
+  return SplitResult{
+      .version = version,
+      .parts = std::move(parts),
+      .encoding = encoding,
+  };
 }
 
 SplitResult split_qrs(const std::vector<unsigned char>& raw, FileType file_type, const SplitOption& option) {
