@@ -32,7 +32,7 @@ inline std::vector<std::string> read_lines(const std::string &file_path) {
 inline std::vector<unsigned char> random_bytes(size_t size) {
   using random_bytes_engine = std::independent_bits_engine<
       std::default_random_engine, CHAR_BIT, unsigned char>;
-  random_bytes_engine rbe;
+  static random_bytes_engine rbe(std::random_device{}());
   std::vector<unsigned char> data(size);
   std::generate(begin(data), end(data), std::ref(rbe));
   return data;

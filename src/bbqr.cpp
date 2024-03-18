@@ -1,7 +1,6 @@
 #include "bbqr/bbqr.hpp"
 
 #include <algorithm>
-#include <format>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -144,7 +143,7 @@ JoinResult<RawType> join_qrs(const std::vector<std::string>& parts) {
   for (auto&& part : parts) {
     size_t idx = std::stoi(part.substr(6, 2), nullptr, 36);
     if (idx >= count) {
-      throw std::invalid_argument(std::format("got part {} but only expecting {}", idx, count));
+      throw std::invalid_argument("got part " + std::to_string(idx) + " but only expecting " + std::to_string(count));
     }
     data.emplace_back(idx, std::string_view(part.data() + 8, part.data() + part.size()));
   }
