@@ -149,7 +149,7 @@ JoinResult<RawType> join_qrs(const std::vector<std::string>& parts) {
     if (idx >= count) {
       throw std::invalid_argument("got part " + std::to_string(idx) + " but only expecting " + std::to_string(count));
     }
-    data.emplace_back(idx, std::string_view(part.data() + 8, part.data() + part.size()));
+    data.emplace_back(idx, std::string_view(part.data() + 8, part.size() - 8));
   }
 
   std::sort(data.begin(), data.end());
