@@ -11,7 +11,7 @@
 #include <string>
 #include <vector>
 
-namespace {
+namespace bbqr {
 /** Helper class for the default infn argument to ConvertBits (just returns the input). */
 struct IntIdentity {
   [[maybe_unused]] int operator()(int x) const { return x; }
@@ -29,8 +29,6 @@ constexpr std::array<ByteAsHex, 256> CreateByteToHexMap() {
   }
   return byte_to_hex;
 }
-
-}  // namespace
 
 /** Convert from one power-of-2 number base to another. */
 template <int frombits, int tobits, bool pad, typename O, typename It, typename I = IntIdentity>
@@ -179,4 +177,5 @@ inline std::optional<std::vector<Byte>> TryParseHex(const std::string_view str) 
   return vch;
 }
 
+}  // namespace bbqr
 #endif
